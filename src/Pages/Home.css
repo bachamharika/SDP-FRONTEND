@@ -1,0 +1,25 @@
+/* Background image and container styling */
+.home-container {
+    background: url("https://nosmsje.gov.in/nosmsje/public/images/National-Overseas-Scholarship-image.png") no-repeat center center/cover;
+    height: 100vh; 
+    position: relative;
+  }
+  
+  /* Dark overlay for readability */
+  .home-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+    z-index: 1;
+  }
+  
+  /* Overlay content styling */
+  .overlay {
+    position: relative;
+    z-index: 2;
+  }
+  

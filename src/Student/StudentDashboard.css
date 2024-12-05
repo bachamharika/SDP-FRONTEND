@@ -1,0 +1,64 @@
+.dashboard-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  height: 100vh; /* Full height for the sidebar */
+}
+
+.sidebar-image-container {
+  width: 150px; /* Set the width of the image container */
+  height: 150px; /* Set the height of the image container */
+  border-radius: 50%; /* Make the image circular */
+  overflow: hidden; /* Crop the image to fit the circular container */
+  margin-bottom: 20px; /* Space below the image */
+  display: flex;
+  justify-content: center; /* Center the image inside */
+  align-items: center; /* Center the image vertically inside */
+}
+
+.sidebar-profile-image {
+  width: 100%; /* Make the image fill the container */
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container without distortion */
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-links {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 10px 0;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+}
+
+.sidebar-link:hover {
+  background-color: #ccc;
+}
+
+.sidebar-link.active {
+  background-color: #2196F3;
+  color: white;
+}
