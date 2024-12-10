@@ -51,26 +51,29 @@ const ManageUsers = () => {
       <div className="row">
         <AdminDashboard />
         <div className="col-md-9 col-lg-10 p-4">
-          <h1 className="mb-4">Manage Users</h1>
+          <h1 className="mb-4 text-primary">Manage Users</h1>
 
           {error && <p className="text-danger">{error}</p>}
 
           {/* Search Bar */}
-          <div className="mb-3">
+          <div className="mb-4">
             <InputGroup>
               <Form.Control
                 placeholder="Search by name or email"
                 value={searchQuery}
                 onChange={handleSearch}
+                className="form-control-lg"
               />
             </InputGroup>
           </div>
 
-          <h3>Users List</h3>
-          <div className="row">
+          <h3 className="mb-4">Users List</h3>
+
+          {/* User Cards */}
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {filteredUsers.map((user) => (
-              <div key={user.id} className="col-md-4 mb-4">
-                <div className="card shadow-sm">
+              <div key={user.id} className="col">
+                <div className="card shadow-sm rounded">
                   {/* Image Display */}
                   <img
                     src={user.profileImage ? `data:image/jpeg;base64,${user.profileImage}` : "default-profile.png"}
@@ -124,10 +127,10 @@ const ManageUsers = () => {
                 src={selectedUser.profileImage ? `data:image/jpeg;base64,${selectedUser.profileImage}` : "default-profile.png"}
                 alt="Profile"
                 className="img-fluid rounded-circle"
-                style={{ maxWidth: "100%", height: "auto" }} // Full view with correct aspect ratio
+                style={{ maxWidth: "200px", height: "auto" }} // Full view with correct aspect ratio
               />
             </div>
-            <h4>{selectedUser.firstName} {selectedUser.lastName}</h4>
+            <h4 className="text-center">{selectedUser.firstName} {selectedUser.lastName}</h4>
             <p><strong>Email:</strong> {selectedUser.email}</p>
             <p><strong>Phone:</strong> {selectedUser.contactNumber}</p>
             <p><strong>Address:</strong> {selectedUser.address}</p>

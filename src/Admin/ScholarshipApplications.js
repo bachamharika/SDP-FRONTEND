@@ -63,106 +63,106 @@ const ManageScholarships = () => {
 
         {/* Main Content Area */}
         <div className="col-md-9 col-lg-10 p-4">
-      <h1 className="text-center mb-4">Manage Scholarships</h1>
+          <h1 className="text-center mb-4 text-primary">Manage Scholarships</h1>
 
-      {/* Scholarships Table */}
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {scholarships.map(scholarship => (
-            <tr key={scholarship.id}>
-              <td>{scholarship.name}</td>
-              <td>{scholarship.amount} Rs</td>
-              <td>
-                <Button
-                  variant="primary"
-                  onClick={() => fetchApplications(scholarship.id)}
-                >
-                  View Applications
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-
-      {/* Application Modal */}
-      {selectedScholarship && (
-        <Modal show={showApplicationModal} onHide={() => setShowApplicationModal(false)} size="lg">
-          <Modal.Header closeButton>
-            <Modal.Title>Applications for {selectedScholarship.name}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {/* Applications Table */}
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>Student Name</th>
-                  <th>Status</th>
-                  <th>Document</th>
-                  <th>Actions</th>
+          {/* Scholarships Table */}
+          <Table striped bordered hover responsive className="shadow-sm">
+            <thead className="thead-dark">
+              <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {scholarships.map(scholarship => (
+                <tr key={scholarship.id}>
+                  <td>{scholarship.name}</td>
+                  <td>{scholarship.amount} Rs</td>
+                  <td>
+                    <Button
+                      variant="primary"
+                      onClick={() => fetchApplications(scholarship.id)}
+                    >
+                      View Applications
+                    </Button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {applications.map(application => (
-                  <tr key={application.id}>
-                    <td>{application.student.firstName}</td>
-                    <td>{application.status}</td>
-                    <td>
-                      <Button
-                        variant="info"
-                        onClick={() => handlePdfView(application.id)} // Trigger the PDF view
-                      >
-                        View Document
-                      </Button>
-                    </td>
-                    <td>
-                      <Button
-                        variant="success"
-                        className="mr-2"
-                        onClick={() => updateApplicationStatus(application.id, 'approved')}
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={() => updateApplicationStatus(application.id, 'rejected')}
-                      >
-                        Reject
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+              ))}
+            </tbody>
+          </Table>
 
-            {/* Display PDF */}
-            {pdfFileUrl && (
-              <div>
-                <h5>PDF Preview:</h5>
-                <div style={{ height: '500px' }}>
-                  <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
-                    <Viewer fileUrl={pdfFileUrl} />
-                  </Worker>
-                </div>
-              </div>
-            )}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowApplicationModal(false)}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      )}
-    </div>
-    </div>
+          {/* Application Modal */}
+          {selectedScholarship && (
+            <Modal show={showApplicationModal} onHide={() => setShowApplicationModal(false)} size="lg" centered>
+              <Modal.Header closeButton>
+                <Modal.Title>Applications for {selectedScholarship.name}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                {/* Applications Table */}
+                <Table striped bordered hover responsive>
+                  <thead className="thead-light">
+                    <tr>
+                      <th>Student Name</th>
+                      <th>Status</th>
+                      <th>Document</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {applications.map(application => (
+                      <tr key={application.id}>
+                        <td>{application.student.firstName} {application.student.lastName}</td>
+                        <td>{application.status}</td>
+                        <td>
+                          <Button
+                            variant="info"
+                            onClick={() => handlePdfView(application.id)} // Trigger the PDF view
+                          >
+                            View Document
+                          </Button>
+                        </td>
+                        <td>
+                          <Button
+                            variant="success"
+                            className="mr-2"
+                            onClick={() => updateApplicationStatus(application.id, 'approved')}
+                          >
+                            Approve
+                          </Button>
+                          <Button
+                            variant="danger"
+                            onClick={() => updateApplicationStatus(application.id, 'rejected')}
+                          >
+                            Reject
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+
+                {/* Display PDF */}
+                {pdfFileUrl && (
+                  <div>
+                    <h5>PDF Preview:</h5>
+                    <div style={{ height: '500px' }}>
+                      <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
+                        <Viewer fileUrl={pdfFileUrl} />
+                      </Worker>
+                    </div>
+                  </div>
+                )}
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShowApplicationModal(false)}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

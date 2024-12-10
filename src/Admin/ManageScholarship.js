@@ -61,16 +61,19 @@ const ManageScholarship = () => {
         <AdminDashboard />
 
         <div className="col-md-9 col-lg-10 p-4">
-          <h1>Manage Scholarships</h1>
+          <h1 className="mb-4 text-center text-primary">Manage Scholarships</h1>
 
-          {error && <p className="text-danger">{error}</p>}
+          {error && <div className="alert alert-danger">{error}</div>}
 
-          
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h3>Scholarship List</h3>
+            <button className="btn btn-success" onClick={() => setEditScholarship({})}>
+              Add New Scholarship
+            </button>
+          </div>
 
-          
-          <h3>Scholarship List</h3>
-          <table className="table table-bordered">
-            <thead>
+          <table className="table table-striped table-bordered table-hover">
+            <thead className="table-dark">
               <tr>
                 <th>Name</th>
                 <th>Description</th>
@@ -88,7 +91,7 @@ const ManageScholarship = () => {
                   <td>{scholarship.amount}</td>
                   <td>
                     <button
-                      className="btn btn-info btn-sm mr-2"
+                      className="btn btn-warning btn-sm mr-2"
                       onClick={() => setEditScholarship(scholarship)}
                     >
                       Edit
@@ -107,7 +110,7 @@ const ManageScholarship = () => {
 
           {/* Edit Scholarship Modal */}
           {editScholarship && (
-            <div className="modal show" style={{ display: "block" }}>
+            <div className="modal fade show" style={{ display: "block" }} aria-modal="true" role="dialog">
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
@@ -121,30 +124,42 @@ const ManageScholarship = () => {
                     </button>
                   </div>
                   <div className="modal-body">
-                    <input
-                      type="text"
-                      className="form-control mb-2"
-                      value={editScholarship.name}
-                      onChange={(e) => setEditScholarship({ ...editScholarship, name: e.target.value })}
-                    />
-                    <input
-                      type="text"
-                      className="form-control mb-2"
-                      value={editScholarship.description}
-                      onChange={(e) => setEditScholarship({ ...editScholarship, description: e.target.value })}
-                    />
-                    <input
-                      type="date"
-                      className="form-control mb-2"
-                      value={editScholarship.deadline}
-                      onChange={(e) => setEditScholarship({ ...editScholarship, deadline: e.target.value })}
-                    />
-                    <input
-                      type="number"
-                      className="form-control"
-                      value={editScholarship.amount}
-                      onChange={(e) => setEditScholarship({ ...editScholarship, amount: e.target.value })}
-                    />
+                    <div className="form-group mb-3">
+                      <label>Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={editScholarship.name}
+                        onChange={(e) => setEditScholarship({ ...editScholarship, name: e.target.value })}
+                      />
+                    </div>
+                    <div className="form-group mb-3">
+                      <label>Description</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={editScholarship.description}
+                        onChange={(e) => setEditScholarship({ ...editScholarship, description: e.target.value })}
+                      />
+                    </div>
+                    <div className="form-group mb-3">
+                      <label>Deadline</label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        value={editScholarship.deadline}
+                        onChange={(e) => setEditScholarship({ ...editScholarship, deadline: e.target.value })}
+                      />
+                    </div>
+                    <div className="form-group mb-3">
+                      <label>Amount</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        value={editScholarship.amount}
+                        onChange={(e) => setEditScholarship({ ...editScholarship, amount: e.target.value })}
+                      />
+                    </div>
                   </div>
                   <div className="modal-footer">
                     <button className="btn btn-primary" onClick={handleEditScholarship}>

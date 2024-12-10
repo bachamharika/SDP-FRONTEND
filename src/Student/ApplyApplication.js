@@ -21,8 +21,7 @@ const ApplyApplication = () => {
         setScholarships(response.data);
       } catch (error) {
         const errorMsg =
-          error.response?.data?.message ||
-          "Failed to fetch scholarships. Please try again later.";
+          error.response?.data?.message || "Failed to fetch scholarships. Please try again later.";
         setErrorMessage(errorMsg);
       }
     };
